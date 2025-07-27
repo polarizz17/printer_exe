@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    /* language & runtime */
+    "target": "ES2020", // ES2019 or later is fine
+    "module": "commonjs", // or "es2020" if you prefer ESM
+    "lib": ["ES2020"],
+
+    /* project structure */
+    "rootDir": ".", // adjust as you like
+    "outDir": "dist",
+
+    /* nice‑to‑haves */
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true, // skips type‑checking node_modules
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["agent.ts"] // or "src/**/*"
+}

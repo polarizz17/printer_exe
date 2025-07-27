@@ -1,0 +1,35 @@
+{
+  "name": "printer-agent",
+  "version": "1.0.0",
+  "description": "Windows print-agent that pulls ESC/POS jobs from Redis",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@thiagoelg/node-printer": "^0.6.2",
+    "js-yaml": "^4.1.0",
+    "node-thermal-printer": "^4.5.0",
+    "redis": "^5.6.1"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^24.1.0",
+    "pkg": "^5.9.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "scripts": {
+    "clean": "rm -rf dist printer-agent.exe",
+    "build": "tsc -p tsconfig.json",
+    "dev": "ts-node --transpile-only agent.ts",
+    "package": "npm run build && pkg dist/agent.js --targets node18-win-x64 --output printer-agent.exe"
+  },
+  "pkg": {
+    "assets": [
+      "node_modules/@thiagoelg/node-printer/lib/*.dll",
+      "node_modules/@thiagoelg/node-printer/lib/*.node"
+    ]
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
