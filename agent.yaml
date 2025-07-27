@@ -1,4 +1,3 @@
 redis: "redis://127.0.0.1:6379"
 queue: "print:dev"
-interfaceOverride: "tcp://127.0.0.1:9100"   
-printerQueue: "EPSON_TM-T20"                
+printerQueue: "EPSON_TM-T20"

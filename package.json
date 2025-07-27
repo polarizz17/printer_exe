@@ -2,8 +2,17 @@
   "name": "printer-agent",
   "version": "1.0.0",
   "description": "Windows print-agent that pulls ESC/POS jobs from Redis",
-  "author": "",
   "license": "ISC",
+  "bin": "dist/agent.js",
+  "engines": {
+    "node": "16.x"
+  },
+  "scripts": {
+    "clean": "del /Q dist printer-agent.exe 2>NUL || true",
+    "build": "tsc -p tsconfig.json",
+    "dev": "ts-node --transpile-only agent.ts",
+    "package": "npm run build && pkg . --targets node16-win-x64 --output printer-agent.exe"
+  },
   "dependencies": {
     "@thiagoelg/node-printer": "^0.6.2",
     "js-yaml": "^4.1.0",
@@ -13,23 +22,19 @@
   "devDependencies": {
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^24.1.0",
-    "pkg": "^5.9.0",
+    "pkg": "^5.8.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   },
-  "scripts": {
-    "clean": "rm -rf dist printer-agent.exe",
-    "build": "tsc -p tsconfig.json",
-    "dev": "ts-node --transpile-only agent.ts",
-    "package": "npm run build && pkg dist/agent.js --targets node18-win-x64 --output printer-agent.exe"
-  },
   "pkg": {
+    "targets": [
+      "node16-win-x64"
+    ],
+    "scripts": [
+      "node_modules/@thiagoelg/node-printer/lib/**/*.js"
+    ],
     "assets": [
-      "node_modules/@thiagoelg/node-printer/lib/*.dll",
-      "node_modules/@thiagoelg/node-printer/lib/*.node"
+      "node_modules/@thiagoelg/node-printer/**/*.{node,dll}"
     ]
-  },
-  "engines": {
-    "node": "18.x"
   }
 }
